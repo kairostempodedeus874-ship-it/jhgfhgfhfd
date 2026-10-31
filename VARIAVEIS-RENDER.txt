@@ -1,0 +1,36 @@
+==============================================
+ VARIAVEIS DO RENDER
+==============================================
+
+BOA NOTICIA: voce NAO precisa cadastrar nenhuma variavel.
+Tudo que o bot precisa ja vem escrito dentro do index.cjs e do render.yaml.
+
+--- JA PREENCHIDAS DENTRO DO PACOTE (so conferir) ---
+
+SUPABASE_URL
+https://y5bsz07hp6db54mu7oic.helloreaddy.com/
+
+SUPABASE_KEY (chave publica do projeto, usada para gravar o status e a fila)
+(embutida automaticamente)
+
+WEBHOOK_URL
+https://y5bsz07hp6db54mu7oic.helloreaddy.com/functions/v1/wa-webhook
+
+SESSION_DIR
+/data/session
+
+PORT
+3000
+
+--- OPCIONAIS ---
+
+SUPABASE_SERVICE_ROLE_KEY
+(so preencha se quiser usar a chave de servico em vez da publica)
+
+BOT_TOKEN
+(so preencha se voce cadastrou o segredo BOT_TOKEN no Backend)
+
+----------------------------------------------
+Lembre de criar um DISCO de 1 GB montado em /data.
+Sem disco a sessao se perde e o QR volta a cada reinicio.
+----------------------------------------------

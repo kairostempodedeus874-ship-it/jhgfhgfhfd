@@ -1,0 +1,54 @@
+COMECE AQUI - 4 PASSOS
+======================
+
+1) DESCOMPACTE este zip.
+   Suba os arquivos na RAIZ de um repositorio novo no GitHub.
+   O package.json, Dockerfile e render.yaml precisam ficar na raiz,
+   sem pasta no meio.
+
+2) No Render: New +  ->  Blueprint  ->  escolha o repositorio.
+   O arquivo render.yaml cria o servico e o disco de 1 GB sozinho.
+
+3) Espere o deploy terminar. NAO precisa cadastrar variavel nenhuma:
+   o endereco do Backend e a chave publica ja vao dentro do index.cjs.
+   (Se quiser usar a chave de servico, cadastre SUPABASE_SERVICE_ROLE_KEY
+    na aba Environment antes do deploy. E opcional.)
+
+4) Abra o painel do projeto -> aba Conexao -> escaneie o QR com o celular
+   (WhatsApp -> Aparelhos conectados -> Conectar um aparelho).
+
+DICA: abrindo o proprio link do Render no navegador (https://SEU-SERVICO.onrender.com)
+voce ve o QR e um diagnostico com check/cruz do que esta faltando.
+
+----------------------------------------------
+Ja vem pronto, nao precisa mexer:
+  SUPABASE_URL = https://y5bsz07hp6db54mu7oic.helloreaddy.com/
+  WEBHOOK_URL  = https://y5bsz07hp6db54mu7oic.helloreaddy.com/functions/v1/wa-webhook
+
+Deu erro? Abra https://SEU-SERVICO.onrender.com/ no navegador.
+A pagina mostra o QR e o diagnostico; em /health a resposta mostra 'ready'
+e, se algo faltar, o nome exato da variavel.
+----------------------------------------------
+
+ERRO 'Exited with status 1' no Render?
+  Esse erro era conflito de formato de modulo (import x require).
+  Ja esta resolvido: o codigo principal agora e o index.cjs.
+  Suba TODOS os arquivos do zip (inclusive index.cjs) e faca Manual Deploy.
+  Se o servico for do tipo Web Service (nao Docker), confira em Settings:
+    Build Command: npm install
+    Start Command: npm start
+----------------------------------------------
+
+ERRO 'failed to compute cache key: "./.npmrc": not found'?
+  O .npmrc e um arquivo oculto (comeca com ponto) e as vezes NAO chega
+  ao GitHub. No pacote 1.5.2 isso nao importa mais: o Dockerfile cria o
+  .npmrc sozinho durante o build. Basta pegar o zip novo e reenviar
+  o Dockerfile, depois Manual Deploy > Clear build cache & deploy.
+----------------------------------------------
+
+ERRO 'Node.js 20 detected without native WebSocket support'?
+  Nao e problema do WhatsApp: a versao do Node da imagem nao tem WebSocket.
+  Resolvido no pacote 1.5.2: a imagem agora e node:22 e o index.cjs ativa a
+  biblioteca ws antes de falar com o Backend. Suba TODOS os arquivos do zip
+  novo e use Manual Deploy > Clear build cache & deploy.
+----------------------------------------------
